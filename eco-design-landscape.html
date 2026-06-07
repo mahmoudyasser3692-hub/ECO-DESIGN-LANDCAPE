@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco Design for Landscape</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-dark: #1e5c2b;
+    --green-mid: #2d7a3a;
+    --green-light: #4aab5a;
+    --green-pale: #e8f5eb;
+    --blue-dark: #1a2e4a;
+    --blue-mid: #1e3d6b;
+    --blue-accent: #3478b8;
+    --blue-light: #3b8fc4;
+    --water: #5ab4d8;
+    --water-light: #d6f0f8;
+    --sand: #f5f0e8;
+    --white: #ffffff;
+    --text-dark: #12211a;
+    --text-mid: #2c4233;
+    --text-muted: #5a7060;
+    --shadow: 0 8px 32px rgba(30,92,43,0.12);
+    --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(30,92,43,0.1);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 44px; height: 44px;
+  }
+
+  .nav-logo-text {
+    line-height: 1.1;
+  }
+
+  .nav-logo-text span:first-child {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--green-dark);
+  }
+
+  .nav-logo-text span:last-child {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue-mid);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links a:hover { color: var(--green-mid); }
+
+  .nav-cta {
+    background: var(--green-dark);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .nav-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0d2918 0%, #1e5c2b 40%, #1a4a6e 100%);
+    padding: 120px 5vw 80px;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: radial-gradient(circle at 2px 2px, #fff 1px, transparent 0);
+    background-size: 36px 36px;
+  }
+
+  .hero-leaves {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(55%, 700px);
+    opacity: 0.18;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #7be89a;
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #7be89a;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: var(--green-dark);
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 13px 30px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #7be89a;
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5vw; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--sand); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-wrap {
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--green-dark), var(--blue-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-img-wrap svg {
+    width: 70%;
+    height: 70%;
+    opacity: 0.9;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: 30px;
+    right: -20px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+
+  .about-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    display: block;
+  }
+
+  .about-badge-label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .about-text { }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .about-value-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(30,92,43,0.1);
+  }
+
+  .about-value-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .about-value-card h4 {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+
+  .about-value-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: #fff; }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+    background: #fff;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  }
+
+  .service-card-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card-body {
+    padding: 28px 24px 32px;
+  }
+
+  .service-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .service-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+
+  .service-card-body p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .service-features {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .service-features li {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-features li::before {
+    content: '✓';
+    font-weight: 700;
+    color: var(--green-mid);
+    flex-shrink: 0;
+  }
+
+  /* ── TEAM ── */
+  #team { background: var(--green-dark); }
+
+  #team .section-tag { color: #7be89a; }
+  #team .section-title { color: #fff; }
+  #team .section-sub { color: rgba(255,255,255,0.65); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 60px;
+  }
+
+  .team-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .team-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+  }
+
+  .team-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .team-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .team-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+  }
+
+  /* ── PROCESS ── */
+  #process { background: #fff; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .process-steps::after {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(to right, var(--green-pale), var(--green-mid), var(--blue-accent), var(--water));
+    z-index: 0;
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-num {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-step h4 {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .process-step p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--sand); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-item:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .gallery-thumb {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    transition: transform 0.4s;
+  }
+
+  .gallery-item:hover .gallery-thumb { transform: scale(1.05); }
+
+  .gallery-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 20px 16px;
+    background: linear-gradient(to top, rgba(10,30,15,0.85), transparent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: #fff; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .contact-info p {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .contact-detail:first-of-type { border-top: 1px solid rgba(0,0,0,0.07); }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .contact-detail-text strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+
+  .contact-detail-text span {
+    font-size: 15px;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+
+  .contact-form {
+    background: var(--sand);
+    border-radius: 24px;
+    padding: 40px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    letter-spacing: 0.02em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1.5px solid rgba(30,92,43,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--green-mid);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .form-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 5vw 36px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 16px;
+    max-width: 280px;
+  }
+
+  .footer-col h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 14px; transition: color 0.2s; }
+  .footer-col ul a:hover { color: #7be89a; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .footer-bottom-right { color: #7be89a; }
+
+  /* ── LOGO SVG ── */
+  .logo-svg { width: 44px; height: 44px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid,
+    .contact-grid { grid-template-columns: 1fr; }
+    .services-grid,
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::after { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-row: auto; }
+    .about-badge { right: 10px; }
+  }
+
+  @media (max-width: 580px) {
+    .services-grid,
+    .team-grid,
+    .process-steps { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <!-- Inline logo based on uploaded image -->
+    <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="21" stroke="url(#lg1)" stroke-width="2"/>
+      <path d="M14 28 Q18 12 28 16 Q32 18 26 26 Q22 30 14 28Z" fill="#4aab5a" opacity="0.9"/>
+      <path d="M18 20 Q22 14 28 16" stroke="#2d7a3a" stroke-width="1.5" fill="none"/>
+      <path d="M24 18 Q28 22 26 28 L24 26 Q26 22 24 18Z" fill="#3b8fc4" opacity="0.85"/>
+      <path d="M25 22 Q27 25 25.5 28 L24.5 27 Q26 24 25 22Z" fill="#5ab4d8" opacity="0.7"/>
+      <!-- circuit dots -->
+      <circle cx="12" cy="22" r="1.5" fill="#3b8fc4" opacity="0.6"/>
+      <circle cx="32" cy="22" r="1.5" fill="#3b8fc4" opacity="0.6"/>
+      <circle cx="22" cy="12" r="1.5" fill="#3b8fc4" opacity="0.6"/>
+      <line x1="12" y1="22" x2="16" y2="22" stroke="#5ab4d8" stroke-width="1" opacity="0.6"/>
+      <line x1="28" y1="22" x2="32" y2="22" stroke="#5ab4d8" stroke-width="1" opacity="0.6"/>
+      <line x1="22" y1="12" x2="22" y2="16" stroke="#5ab4d8" stroke-width="1" opacity="0.6"/>
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#4aab5a"/>
+          <stop offset="100%" stop-color="#3b8fc4"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="nav-logo-text">
+      <span>Eco Design</span>
+      <span>for Landscape</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Projects</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <!-- Large decorative leaf background -->
+  <svg class="hero-leaves" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="300" cy="300" rx="280" ry="280" fill="white" opacity="0.05"/>
+    <path d="M100 500 Q200 100 500 150 Q550 200 400 400 Q300 500 100 500Z" fill="white" opacity="0.08"/>
+    <path d="M150 480 Q250 200 480 220 Q500 280 380 420 Q280 500 150 480Z" fill="white" opacity="0.06"/>
+    <circle cx="420" cy="180" r="60" fill="white" opacity="0.05"/>
+    <circle cx="480" cy="350" r="40" fill="white" opacity="0.04"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Sustainable Landscape Design</div>
+    <h1>Where Nature Meets <em>Innovation</em></h1>
+    <p class="hero-desc">We transform outdoor spaces into living, breathing ecosystems — blending ecological principles with cutting-edge landscape design to create environments that sustain and inspire.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Our Services</a>
+      <a href="#contact" class="btn-outline">Start a Project</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">3+</span>
+        <span class="hero-stat-label">Expert Designers</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">Eco-Friendly</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">∞</span>
+        <span class="hero-stat-label">Creative Solutions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-img-wrap">
+        <!-- Decorative landscape illustration -->
+        <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sky -->
+          <rect width="300" height="380" fill="url(#skyGrad)" rx="0"/>
+          <!-- Hills -->
+          <ellipse cx="150" cy="300" rx="200" ry="100" fill="#1e5c2b" opacity="0.6"/>
+          <ellipse cx="80" cy="320" rx="130" ry="80" fill="#2d7a3a" opacity="0.5"/>
+          <ellipse cx="250" cy="310" rx="120" ry="70" fill="#1e5c2b" opacity="0.4"/>
+          <!-- Trees -->
+          <rect x="130" y="220" width="8" height="60" fill="#0d2918"/>
+          <ellipse cx="134" cy="200" rx="30" ry="40" fill="#2d7a3a" opacity="0.9"/>
+          <ellipse cx="134" cy="190" rx="22" ry="28" fill="#4aab5a" opacity="0.8"/>
+          <rect x="70" y="240" width="6" height="50" fill="#0d2918"/>
+          <ellipse cx="73" cy="225" rx="22" ry="30" fill="#1e5c2b" opacity="0.9"/>
+          <rect x="200" y="235" width="6" height="50" fill="#0d2918"/>
+          <ellipse cx="203" cy="220" rx="24" ry="32" fill="#2d7a3a" opacity="0.9"/>
+          <!-- Water drops (logo echo) -->
+          <path d="M240 80 Q244 72 248 80 Q248 88 244 90 Q240 88 240 80Z" fill="#5ab4d8" opacity="0.8"/>
+          <path d="M255 100 Q258 94 261 100 Q261 106 258 108 Q255 106 255 100Z" fill="#3b8fc4" opacity="0.6"/>
+          <!-- Circuit nodes -->
+          <circle cx="50" cy="80" r="4" fill="#3b8fc4" opacity="0.5"/>
+          <circle cx="70" cy="60" r="3" fill="#3b8fc4" opacity="0.4"/>
+          <line x1="50" y1="80" x2="70" y2="60" stroke="#5ab4d8" stroke-width="1" opacity="0.3"/>
+          <circle cx="270" cy="140" r="4" fill="#4aab5a" opacity="0.5"/>
+          <circle cx="250" cy="120" r="3" fill="#4aab5a" opacity="0.4"/>
+          <line x1="270" y1="140" x2="250" y2="120" stroke="#7be89a" stroke-width="1" opacity="0.3"/>
+          <!-- Sun -->
+          <circle cx="60" cy="70" r="30" fill="#f7d060" opacity="0.2"/>
+          <circle cx="60" cy="70" r="20" fill="#f7d060" opacity="0.25"/>
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="380" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1a2e4a"/>
+              <stop offset="60%" stop-color="#1e3d6b"/>
+              <stop offset="100%" stop-color="#1e5c2b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="about-badge">
+        <span class="about-badge-num">🌿</span>
+        <span class="about-badge-label">Eco-Certified Approach</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Who We Are</span>
+      <h2 class="section-title">Designing Landscapes That Live & Breathe</h2>
+      <p class="section-sub">Eco Design for Landscape is a passionate team of landscape architects and environmental designers dedicated to creating sustainable outdoor spaces. We blend ecological science with creative design to deliver landscapes that are beautiful, functional, and environmentally responsible.</p>
+      <div class="about-values">
+        <div class="about-value-card">
+          <div class="about-value-icon" style="background:#e8f5eb;">🌱</div>
+          <h4>Sustainability First</h4>
+          <p>Every decision guided by environmental impact and long-term ecological health.</p>
+        </div>
+        <div class="about-value-card">
+          <div class="about-value-icon" style="background:#d6f0f8;">💧</div>
+          <h4>Water Wise</h4>
+          <p>Smart irrigation and water-efficient plants that conserve our most precious resource.</p>
+        </div>
+        <div class="about-value-card">
+          <div class="about-value-icon" style="background:#e8f5eb;">🎨</div>
+          <h4>Creative Vision</h4>
+          <p>Unique designs tailored to your space, style, and the surrounding ecosystem.</p>
+        </div>
+        <div class="about-value-card">
+          <div class="about-value-icon" style="background:#fff3e0;">☀️</div>
+          <h4>Local Expertise</h4>
+          <p>Deep knowledge of local climate, soil, and native plant species for lasting results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">From initial concept to final planting, we offer a complete suite of eco-conscious landscape services.</p>
+    </div>
+    <a href="#contact" style="text-decoration:none; background:var(--green-pale); color:var(--green-dark); padding:12px 24px; border-radius:100px; font-weight:600; font-size:14px; white-space:nowrap;">Get a Free Quote →</a>
+  </div>
+  <div class="services-grid">
+
+    <!-- Service 1 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #e8f5eb, #c8e6cb);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <ellipse cx="50" cy="70" rx="35" ry="15" fill="#4aab5a" opacity="0.3"/>
+          <rect x="45" y="40" width="10" height="30" fill="#2d7a3a"/>
+          <ellipse cx="50" cy="30" rx="25" ry="22" fill="#2d7a3a"/>
+          <ellipse cx="50" cy="25" rx="18" ry="16" fill="#4aab5a"/>
+          <ellipse cx="50" cy="22" rx="10" ry="9" fill="#7be89a" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#e8f5eb; color:#2d7a3a;">Design</span>
+        <h3>Landscape Design & Planning</h3>
+        <p>Comprehensive design plans that harmonize aesthetics with ecology, tailored to your vision and local environment.</p>
+        <ul class="service-features">
+          <li>Site analysis & assessment</li>
+          <li>Concept & master planning</li>
+          <li>3D visualization & renders</li>
+          <li>Plant selection & layout</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #d6f0f8, #b3e0f0);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <path d="M30 60 Q50 20 70 60" stroke="#3b8fc4" stroke-width="3" fill="none"/>
+          <path d="M50 30 Q55 55 50 80" stroke="#5ab4d8" stroke-width="2" fill="none"/>
+          <path d="M28 58 Q50 15 72 58 Q72 80 50 84 Q28 80 28 58Z" fill="#3b8fc4" opacity="0.15"/>
+          <circle cx="50" cy="78" r="8" fill="#5ab4d8" opacity="0.4"/>
+          <path d="M46 30 Q50 40 54 30" fill="#3b8fc4" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#d6f0f8; color:#185fa5;">Irrigation</span>
+        <h3>Smart Irrigation Systems</h3>
+        <p>Water-smart irrigation design and installation that saves water while keeping your landscape healthy and thriving.</p>
+        <ul class="service-features">
+          <li>Drip & micro-irrigation</li>
+          <li>Smart sensor controllers</li>
+          <li>Rainwater harvesting</li>
+          <li>Water usage auditing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #e8f5eb, #d4edc4);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="20" y="55" width="60" height="20" rx="4" fill="#1e5c2b" opacity="0.4"/>
+          <rect x="25" y="35" width="12" height="20" fill="#2d7a3a"/>
+          <rect x="44" y="28" width="12" height="27" fill="#1e5c2b"/>
+          <rect x="63" y="40" width="12" height="15" fill="#2d7a3a"/>
+          <ellipse cx="31" cy="32" rx="10" ry="8" fill="#4aab5a"/>
+          <ellipse cx="50" cy="24" rx="11" ry="9" fill="#2d7a3a"/>
+          <ellipse cx="69" cy="37" rx="9" ry="7" fill="#4aab5a"/>
+          <rect x="15" y="72" width="70" height="8" rx="2" fill="#8d6e63" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#e8f5eb; color:#2d7a3a;">Planting</span>
+        <h3>Native Plant Gardens</h3>
+        <p>Curated native and adaptive plantings that support local biodiversity, attract pollinators, and require minimal maintenance.</p>
+        <ul class="service-features">
+          <li>Native species sourcing</li>
+          <li>Pollinator corridors</li>
+          <li>Seasonal color planning</li>
+          <li>Soil improvement</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="20" y="55" width="60" height="25" rx="3" fill="#8d6e63" opacity="0.4"/>
+          <rect x="25" y="40" width="20" height="15" rx="2" fill="#8d6e63" opacity="0.6"/>
+          <rect x="55" y="45" width="20" height="10" rx="2" fill="#8d6e63" opacity="0.5"/>
+          <rect x="30" y="25" width="40" height="15" rx="2" fill="#a1887f" opacity="0.4"/>
+          <circle cx="50" cy="18" r="8" fill="#f7d060" opacity="0.6"/>
+          <!-- solar rays -->
+          <line x1="50" y1="6" x2="50" y2="2" stroke="#f7d060" stroke-width="2" opacity="0.5"/>
+          <line x1="62" y1="10" x2="65" y2="7" stroke="#f7d060" stroke-width="2" opacity="0.5"/>
+          <line x1="38" y1="10" x2="35" y2="7" stroke="#f7d060" stroke-width="2" opacity="0.5"/>
+          <!-- path lines -->
+          <rect x="20" y="78" width="60" height="5" rx="2" fill="#6d4c41" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#fff3e0; color:#e65100;">Hardscape</span>
+        <h3>Sustainable Hardscaping</h3>
+        <p>Eco-friendly pathways, patios, and structures using permeable, recycled, and locally sourced materials.</p>
+        <ul class="service-features">
+          <li>Permeable paving</li>
+          <li>Natural stone & wood</li>
+          <li>Outdoor living spaces</li>
+          <li>Retaining walls</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service 5 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <rect x="25" y="25" width="50" height="50" rx="4" fill="none" stroke="#3b8fc4" stroke-width="2" opacity="0.4"/>
+          <rect x="30" y="30" width="18" height="18" rx="2" fill="#4aab5a" opacity="0.6"/>
+          <rect x="52" y="30" width="18" height="18" rx="2" fill="#3b8fc4" opacity="0.6"/>
+          <rect x="30" y="52" width="18" height="18" rx="2" fill="#5ab4d8" opacity="0.5"/>
+          <rect x="52" y="52" width="18" height="18" rx="2" fill="#4aab5a" opacity="0.4"/>
+          <!-- circuit lines -->
+          <line x1="25" y1="39" x2="15" y2="39" stroke="#3b8fc4" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="13" cy="39" r="3" fill="#3b8fc4" opacity="0.5"/>
+          <line x1="75" y1="61" x2="85" y2="61" stroke="#3b8fc4" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="87" cy="61" r="3" fill="#3b8fc4" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#e3f2fd; color:#185fa5;">Tech</span>
+        <h3>Green Roof & Vertical Gardens</h3>
+        <p>Transform rooftops and walls into productive green spaces that insulate, purify air, and reduce urban heat.</p>
+        <ul class="service-features">
+          <li>Green roof systems</li>
+          <li>Living walls & facades</li>
+          <li>Modular growing systems</li>
+          <li>Structural assessment</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Service 6 -->
+    <div class="service-card">
+      <div class="service-card-img" style="background: linear-gradient(135deg, #e8f5eb, #c8e6cb);">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#4aab5a" stroke-width="2" opacity="0.4" stroke-dasharray="4 3"/>
+          <circle cx="50" cy="50" r="18" fill="#e8f5eb"/>
+          <path d="M42 58 L50 38 L58 58 Q50 64 42 58Z" fill="#2d7a3a" opacity="0.7"/>
+          <path d="M50 38 L50 65" stroke="#1e5c2b" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="50" r="4" fill="#4aab5a"/>
+          <!-- arrows for maintenance -->
+          <path d="M25 50 Q26 40 35 35" stroke="#4aab5a" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+          <path d="M75 50 Q74 60 65 65" stroke="#4aab5a" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <div class="service-card-body">
+        <span class="service-tag" style="background:#e8f5eb; color:#2d7a3a;">Care</span>
+        <h3>Landscape Maintenance</h3>
+        <p>Ongoing care plans that keep your landscape thriving through every season with minimal environmental footprint.</p>
+        <ul class="service-features">
+          <li>Organic fertilization</li>
+          <li>Pruning & shaping</li>
+          <li>Seasonal planting</li>
+          <li>Pest management (natural)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div style="text-align:center; max-width:600px; margin:0 auto;">
+    <span class="section-tag">The Experts</span>
+    <h2 class="section-title">Meet Our Team</h2>
+    <p class="section-sub" style="margin:0 auto;">Three passionate designers united by a love of nature and a commitment to sustainable landscapes.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #2d7a3a, #4aab5a);">MY</div>
+      <div class="team-name">Mahmoud Yasser</div>
+      <div class="team-role">Co-Founder & Lead Designer</div>
+      <p class="team-desc">Specializes in ecological landscape design and sustainable site planning, bringing each project to life with a deep respect for natural systems and local biodiversity.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #185fa5, #3b8fc4);">OS</div>
+      <div class="team-name">Omneya Sayed</div>
+      <div class="team-role">Co-Founder & Planting Specialist</div>
+      <p class="team-desc">Expert in native plant selection, water-wise gardening, and creating vibrant, low-maintenance plantings that celebrate the beauty of the natural landscape.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #1e5c2b, #3b8fc4);">AG</div>
+      <div class="team-name">Amr Gamal</div>
+      <div class="team-role">Co-Founder & Technical Director</div>
+      <p class="team-desc">Leads technical implementation including smart irrigation, green infrastructure, and innovative sustainable hardscape solutions that balance function and beauty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div style="text-align:center; max-width:600px; margin:0 auto;">
+    <span class="section-tag">How It Works</span>
+    <h2 class="section-title">Our Design Process</h2>
+    <p class="section-sub" style="margin:0 auto;">A thoughtful, collaborative journey from first conversation to flourishing landscape.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num" style="background: var(--green-dark);">01</div>
+      <h4>Discovery & Consultation</h4>
+      <p>We listen to your vision, assess your site, understand your lifestyle, and identify ecological opportunities unique to your property.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num" style="background: var(--green-mid);">02</div>
+      <h4>Concept Design</h4>
+      <p>Our team develops multiple concept directions, exploring spatial layouts, plant palettes, and sustainable feature options.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num" style="background: var(--blue-accent);">03</div>
+      <h4>Detailed Planning</h4>
+      <p>We refine the chosen concept into a detailed design with planting plans, irrigation layouts, and construction documents.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num" style="background: var(--blue-light);">04</div>
+      <h4>Installation & Care</h4>
+      <p>Expert installation by our team, followed by a care plan and guidance to ensure your landscape flourishes for years to come.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <span class="section-tag">Our Work</span>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <div class="gallery-thumb" style="background: linear-gradient(160deg, #0d2918, #1e5c2b, #2d7a3a); height:100%;">
+        <svg width="200" height="300" viewBox="0 0 200 300" fill="none">
+          <ellipse cx="100" cy="240" rx="90" ry="40" fill="#1e5c2b" opacity="0.6"/>
+          <rect x="88" y="140" width="14" height="100" fill="#0d2918"/>
+          <ellipse cx="95" cy="120" rx="40" ry="50" fill="#2d7a3a"/>
+          <ellipse cx="95" cy="110" rx="28" ry="35" fill="#4aab5a" opacity="0.8"/>
+          <rect x="40" y="180" width="10" height="70" fill="#0d2918"/>
+          <ellipse cx="45" cy="165" rx="28" ry="35" fill="#1e5c2b"/>
+          <rect x="145" y="190" width="10" height="60" fill="#0d2918"/>
+          <ellipse cx="150" cy="176" rx="25" ry="30" fill="#2d7a3a"/>
+          <path d="M10 260 Q60 240 100 255 Q140 270 190 255" stroke="#4aab5a" stroke-width="2" fill="none" opacity="0.5"/>
+          <circle cx="160" cy="60" r="25" fill="#f7d060" opacity="0.15"/>
+          <path d="M140 100 Q160 80 180 100" stroke="#7be89a" stroke-width="1.5" fill="none" opacity="0.4"/>
+        </svg>
+        <div class="gallery-label">Residential Garden Transformation</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-thumb" style="background: linear-gradient(135deg, #1a2e4a, #1e3d6b, #3478b8);">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect x="20" y="50" width="80" height="50" rx="4" fill="#1e3d6b" opacity="0.6"/>
+          <rect x="25" y="30" width="70" height="22" rx="3" fill="#3478b8" opacity="0.5"/>
+          <!-- plants on roof -->
+          <ellipse cx="35" cy="28" rx="8" ry="6" fill="#4aab5a" opacity="0.8"/>
+          <ellipse cx="60" cy="26" rx="10" ry="7" fill="#2d7a3a"/>
+          <ellipse cx="85" cy="28" rx="8" ry="6" fill="#4aab5a" opacity="0.7"/>
+          <path d="M48 78 Q60 62 72 78" fill="#5ab4d8" opacity="0.3"/>
+        </svg>
+        <div class="gallery-label">Green Roof Installation</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-thumb" style="background: linear-gradient(135deg, #1e5c2b, #4aab5a);">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <!-- vertical garden wall -->
+          <rect x="20" y="15" width="80" height="90" rx="4" fill="#0d2918" opacity="0.5"/>
+          <rect x="25" y="20" width="15" height="12" rx="2" fill="#4aab5a" opacity="0.8"/>
+          <rect x="43" y="20" width="15" height="12" rx="2" fill="#2d7a3a" opacity="0.9"/>
+          <rect x="61" y="20" width="15" height="12" rx="2" fill="#4aab5a" opacity="0.7"/>
+          <rect x="25" y="36" width="15" height="12" rx="2" fill="#2d7a3a"/>
+          <rect x="43" y="36" width="15" height="12" rx="2" fill="#7be89a" opacity="0.6"/>
+          <rect x="61" y="36" width="15" height="12" rx="2" fill="#2d7a3a"/>
+          <rect x="25" y="52" width="15" height="12" rx="2" fill="#4aab5a" opacity="0.8"/>
+          <rect x="43" y="52" width="15" height="12" rx="2" fill="#2d7a3a"/>
+          <rect x="61" y="52" width="15" height="12" rx="2" fill="#4aab5a" opacity="0.7"/>
+          <rect x="25" y="68" width="15" height="12" rx="2" fill="#2d7a3a"/>
+          <rect x="43" y="68" width="15" height="12" rx="2" fill="#4aab5a" opacity="0.8"/>
+          <rect x="61" y="68" width="15" height="12" rx="2" fill="#2d7a3a"/>
+        </svg>
+        <div class="gallery-label">Living Wall System</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-thumb" style="background: linear-gradient(135deg, #0d3320, #1e5c2b, #1a4a6e);">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <!-- water feature -->
+          <ellipse cx="60" cy="80" rx="40" ry="18" fill="#3b8fc4" opacity="0.4"/>
+          <ellipse cx="60" cy="78" rx="30" ry="12" fill="#5ab4d8" opacity="0.5"/>
+          <path d="M50 50 Q60 30 70 50 Q65 60 60 62 Q55 60 50 50Z" fill="#5ab4d8" opacity="0.7"/>
+          <path d="M40 60 Q60 20 80 60" stroke="#3b8fc4" stroke-width="2" fill="none" opacity="0.5"/>
+          <!-- rocks -->
+          <ellipse cx="30" cy="82" rx="12" ry="6" fill="#5f5e5a" opacity="0.5"/>
+          <ellipse cx="90" cy="84" rx="10" ry="5" fill="#5f5e5a" opacity="0.4"/>
+          <!-- plants around -->
+          <ellipse cx="22" cy="72" rx="10" ry="8" fill="#4aab5a" opacity="0.7"/>
+          <ellipse cx="98" cy="70" rx="9" ry="7" fill="#2d7a3a" opacity="0.8"/>
+        </svg>
+        <div class="gallery-label">Water Feature Design</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-thumb" style="background: linear-gradient(135deg, #2d3a1e, #4a5e2b, #3a7030);">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <!-- pathway / hardscape -->
+          <rect x="47" y="15" width="26" height="90" rx="4" fill="#8d6e63" opacity="0.5"/>
+          <rect x="20" y="48" width="80" height="24" rx="4" fill="#8d6e63" opacity="0.4"/>
+          <ellipse cx="30" cy="40" rx="14" ry="12" fill="#4aab5a" opacity="0.8"/>
+          <ellipse cx="90" cy="40" rx="12" ry="10" fill="#2d7a3a"/>
+          <ellipse cx="28" cy="76" rx="13" ry="10" fill="#2d7a3a" opacity="0.7"/>
+          <ellipse cx="92" cy="78" rx="11" ry="9" fill="#4aab5a" opacity="0.8"/>
+          <rect x="50" y="58" width="20" height="2" rx="1" fill="#a1887f" opacity="0.6"/>
+        </svg>
+        <div class="gallery-label">Eco Pathway & Garden</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <span class="section-tag">Get In Touch</span>
+      <h2>Let's Design Your Dream Landscape</h2>
+      <p>Ready to transform your outdoor space? We'd love to hear about your project. Contact us for a free consultation and let's start creating something beautiful together.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon" style="background:#e8f5eb;">📞</div>
+        <div class="contact-detail-text">
+          <strong>Phone</strong>
+          <span>010 9755 8954</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon" style="background:#d6f0f8;">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          <span>mahmoudyasser3692@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon" style="background:#e8f5eb;">🌍</div>
+        <div class="contact-detail-text">
+          <strong>Service Area</strong>
+          <span>Egypt & Surrounding Region</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon" style="background:#fff3e0;">🕐</div>
+        <div class="contact-detail-text">
+          <strong>Working Hours</strong>
+          <span>Sat–Thu: 9:00 AM – 6:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:24px; color:var(--text-dark);">Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+20 ...">
+      </div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select>
+          <option>Landscape Design & Planning</option>
+          <option>Smart Irrigation Systems</option>
+          <option>Native Plant Gardens</option>
+          <option>Sustainable Hardscaping</option>
+          <option>Green Roof & Vertical Gardens</option>
+          <option>Landscape Maintenance</option>
+          <option>Multiple Services / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Project</label>
+        <textarea placeholder="Describe your space, goals, and any ideas you have in mind..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! We\'ll be in touch within 24 hours.')">Send Message 🌿</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+        <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="21" stroke="url(#flg)" stroke-width="2"/>
+          <path d="M14 28 Q18 12 28 16 Q32 18 26 26 Q22 30 14 28Z" fill="#4aab5a" opacity="0.9"/>
+          <path d="M24 18 Q28 22 26 28 L24 26 Q26 22 24 18Z" fill="#3b8fc4" opacity="0.85"/>
+          <circle cx="12" cy="22" r="1.5" fill="#3b8fc4" opacity="0.6"/>
+          <circle cx="32" cy="22" r="1.5" fill="#3b8fc4" opacity="0.6"/>
+          <defs>
+            <linearGradient id="flg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4aab5a"/>
+              <stop offset="100%" stop-color="#3b8fc4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#fff;">Eco Design</span>
+      </div>
+      <p>Creating sustainable, beautiful outdoor spaces that connect people with nature and care for our planet.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Landscape Design</a></li>
+        <li><a href="#services">Smart Irrigation</a></li>
+        <li><a href="#services">Native Gardens</a></li>
+        <li><a href="#services">Hardscaping</a></li>
+        <li><a href="#services">Green Roofs</a></li>
+        <li><a href="#services">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#gallery">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:01097558954">010 9755 8954</a></li>
+        <li><a href="mailto:mahmoudyasser3692@gmail.com">mahmoudyasser3692@gmail.com</a></li>
+        <li><a href="#">Egypt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Eco Design for Landscape. All rights reserved.</span>
+    <span class="footer-bottom-right">Mahmoud Yasser · Omneya Sayed · Amr Gamal</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    links.forEach(l => {
+      l.style.color = l.getAttribute('href') === '#' + current ? 'var(--green-mid)' : '';
+    });
+  });
+</script>
+</body>
+</html>
